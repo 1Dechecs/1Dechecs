@@ -12,7 +12,7 @@ class DrawingView @JvmOverloads constructor (context: Context, attributes: Attri
     var screenWidth = 0f
     var screenHeight = 0f
     var drawing = false
-    val echiquier = Echiquier(0f,0f,0f,0f,this)
+    val echiquier = Echiquier(0f,0f,0f, 0f,this)
     val cavalier = Cavalier(this)
     val roi = Roi(this)
     val tour = Tour(this)
@@ -43,9 +43,9 @@ class DrawingView @JvmOverloads constructor (context: Context, attributes: Attri
         screenWidth = w.toFloat()
         screenHeight = h.toFloat()
         echiquier.width = (w / 6f)
-        echiquier.cibleDistance= (w / 2f)
-        echiquier.cibleDebut = (h / 8f)
-        echiquier.cibleFin = (h * 7 / 8f)
+        echiquier.Xi= (w / 2f)
+        echiquier.Yi = (h / 8f)
+        echiquier.ecart = (h * 7 / 8f)
         echiquier.setRect()
     }
 
