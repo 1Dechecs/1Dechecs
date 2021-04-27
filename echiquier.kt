@@ -4,6 +4,52 @@ class Echiquier (var Xi: Float, var Yi: Float, var ecart: Float, var width: Floa
 
     val CIBLE_PIECES = 8
     val cible = RectF(Xi, Yi,
+        Xi + width, ecart)
+    var cibleTouchee = BooleanArray(CIBLE_PIECES)
+    val ciblePaint = Paint()
+    val nbPaint = Paint()
+    val contPaint = Paint()
+    var longueurPiece = 0f
+
+    fun draw(canvas: Canvas) {
+        val currentPoint = PointF()
+        currentPoint.x = cible.left
+        currentPoint.y = cible.top
+        nbPaint.color = Color.WHITE
+        contPaint.color = Color.BLACK
+        canvas.drawRect(Xi - (longueurPiece / 6), Yi - (longueurPiece / 6), Xi + longueurPiece + (longueurPiece / 5), Yi + (8 * longueurPiece) + (longueurPiece / 6), contPaint)
+        for (i in 0 until CIBLE_PIECES) {
+            if (!cibleTouchee[i]) {
+                if (i % 2 != 0)
+                    ciblePaint.color = Color.DKGRAY
+                else
+                    ciblePaint.color = Color.GRAY
+                canvas.drawRect(currentPoint.x,currentPoint.y,cible.right,
+                    currentPoint.y+longueurPiece,ciblePaint)
+                nbPaint.setTextSize(50F)
+                var j = i + 1
+                canvas.drawText(j.toString(), currentPoint.x + (longueurPiece / 12), currentPoint.y + (longueurPiece / 3), nbPaint)
+            }
+            currentPoint.y += longueurPiece
+        }
+    }
+
+    fun setRect() {
+        cible.set(Xi, Yi,
+            Xi + width, ecart)
+        longueurPiece = (ecart - Yi) / CIBLE_PIECES
+    }
+}
+
+_______________________________________________________________________________________________________________________________________
+
+
+import android.graphics.*
+
+class Echiquier (var Xi: Float, var Yi: Float, var ecart: Float, var width: Float, var view: DrawingView) {
+
+    val CIBLE_PIECES = 8
+    val cible = RectF(Xi, Yi,
             Xi + width, ecart)
     var cibleTouchee = BooleanArray(CIBLE_PIECES)
     val ciblePaint = Paint()
