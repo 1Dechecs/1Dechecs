@@ -1,10 +1,10 @@
 import android.graphics.*
 
-class Echiquier (var cibleDistance: Float, var cibleDebut: Float, var cibleFin: Float, var width: Float, var view: DrawingView) {
+class Echiquier (var Xi: Float, var Yi: Float, var ecart: Float, var width: Float, var view: DrawingView) {
 
     val CIBLE_PIECES = 8
-    val cible = RectF(cibleDistance, cibleDebut,
-            cibleDistance + width, cibleFin)
+    val cible = RectF(Xi, Yi,
+            Xi + width, ecart)
     var cibleTouchee = BooleanArray(CIBLE_PIECES)
     val ciblePaint = Paint()
     var longueurPiece = 0f
@@ -27,9 +27,9 @@ class Echiquier (var cibleDistance: Float, var cibleDebut: Float, var cibleFin: 
     }
 
     fun setRect() {
-        cible.set(cibleDistance, cibleDebut,
-                cibleDistance + width, cibleFin)
-        longueurPiece = (cibleFin - cibleDebut) / CIBLE_PIECES
+        cible.set(Xi, Yi,
+                Xi + width, ecart)
+        longueurPiece = (ecart - Yi) / CIBLE_PIECES
     }
 }
 
