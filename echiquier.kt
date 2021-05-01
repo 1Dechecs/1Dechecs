@@ -1,3 +1,53 @@
+import android.graphics.*
+
+class Echiquier (var Xi: Float, var Yi: Float, var ecart: Float, var width: Float, var view: DrawingView) {
+
+    val CIBLE_PIECES = 8
+    val cible = RectF(Xi, Yi,
+        Xi + width, ecart)
+    var cibleTouchee = BooleanArray(CIBLE_PIECES)
+    val ciblePaint = Paint()
+    val nbPaint = Paint()
+    val contPaint = Paint()
+    var longueurPiece = 0f
+
+    fun draw(canvas: Canvas) {
+        val currentPoint = PointF()
+        currentPoint.x = cible.left
+        currentPoint.y = cible.top
+        nbPaint.color = Color.WHITE
+        contPaint.color = Color.argb(255,47, 27, 12)
+        canvas.drawRect(Xi - (longueurPiece / 6), Yi - (longueurPiece / 6), Xi + longueurPiece + (longueurPiece / 5), Yi + (8 * longueurPiece) + (longueurPiece / 6), contPaint)
+        for (i in 0 until CIBLE_PIECES) {
+            if (!cibleTouchee[i]) {
+                if (i % 2 != 0)
+                    ciblePaint.color = Color.argb(255,91, 60, 17)
+                else
+                    ciblePaint.color = Color.argb(255,200, 173, 127)
+                canvas.drawRect(currentPoint.x,currentPoint.y,cible.right,
+                    currentPoint.y+longueurPiece,ciblePaint)
+                nbPaint.setTextSize(40F)
+                var j = 8 - i
+                canvas.drawText(j.toString(), currentPoint.x + (longueurPiece / 12), currentPoint.y + (9 * longueurPiece / 10), nbPaint)
+                canvas.rotate(180F,currentPoint.x + (longueurPiece / 2),currentPoint.y + (longueurPiece / 2))
+                canvas.drawText(j.toString(), currentPoint.x + (longueurPiece / 20), currentPoint.y + (9 * longueurPiece / 10), nbPaint)
+                canvas.rotate(180F,currentPoint.x + (longueurPiece / 2),currentPoint.y + (longueurPiece / 2))
+            }
+            currentPoint.y += longueurPiece
+        }
+    }
+
+    fun setRect() {
+        cible.set(Xi, Yi,
+            Xi + width, ecart)
+        longueurPiece = (ecart - Yi) / CIBLE_PIECES
+    }
+}
+
+
+
+______________________________________________________________________________________________________________________________________
+
 class Echiquier (var Xi: Float, var Yi: Float, var ecart: Float, var width: Float, var view: DrawingView) {
 
     val CIBLE_PIECES = 8
