@@ -1,4 +1,4 @@
-resources>
+<resources>
     <string name="app_name">petitEchec</string>
     <string name="reset_game">Recommencer une partie</string>
     <string name="noir">Les Noirs ont gagné !</string>
