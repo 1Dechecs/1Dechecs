@@ -7,5 +7,11 @@ open class Piece(open var resources: Resources, open var xi: Int, open var yi: I
     val paint = Paint()
 
     open fun draw(canvas: Canvas?) {
+        //* Dessine la pièce *//
+    }
+
+    open fun isPossible(case1: Case,case2: Case, lesCases: ArrayList<Case>): Boolean{
+        //* Vérifie si le mouvement est autorisé par la pièce *//
+        return true
     }
 }

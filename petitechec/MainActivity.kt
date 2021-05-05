@@ -2,6 +2,7 @@ package com.example.petitechec
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 
 class MainActivity: AppCompatActivity() {
 
@@ -21,5 +22,9 @@ class MainActivity: AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         DrawingView.resume()
+    }
+
+    fun onClick(v: View){
+        DrawingView.gameOver()
     }
 }
